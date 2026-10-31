@@ -1,67 +1,63 @@
 <x-layouts.app title="Tambah Obat">
-    <div class="space-y-6">
-        <div class="flex items-center gap-3">
-            <a href="{{ route('admin.obat.index') }}"
-                class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-            <div>
-                <h1 class="text-2xl font-bold text-slate-800">Tambah Obat</h1>
-                <p class="text-sm text-slate-500 mt-1">Isi formulir di bawah untuk menambah data obat</p>
-            </div>
-        </div>
+    <div class="flex items-center gap-3 mb-6">
+        <a href="{{ route('obat.index') }}"
+            class="flex items-center justify-center w-9 h-9 rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 transition">
+            <i class="fas fa-arrow-left text-xs"></i>
+        </a>
+        <h2 class="text-xl font-bold text-slate-800">Tambah Obat</h2>
+    </div>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-            <form action="{{ route('admin.obat.store') }}" method="POST" class="space-y-5">
+    <div class="card bg-base-100 shadow-md rounded-2xl border border-slate-200">
+        <div class="card-body p-7">
+            <form action="{{ route('obat.store') }}" method="POST">
                 @csrf
 
-                <div>
-                    <label for="nama_obat" class="block text-sm font-semibold text-slate-700 mb-1.5">
-                        Nama Obat <span class="text-red-500">*</span>
+                <div class="form-control mb-5">
+                    <label class="label pb-1">
+                        <span class="text-sm font-semibold text-gray-700">Nama Obat <span class="text-red-500">*</span></span>
                     </label>
-                    <input type="text" name="nama_obat" id="nama_obat"
-                        value="{{ old('nama_obat') }}"
-                        class="w-full px-4 py-2.5 rounded-lg border @error('nama_obat') border-red-400 @else border-slate-300 @enderror focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all"
-                        placeholder="Contoh: Paracetamol">
+                    <input type="text" name="nama_obat" value="{{ old('nama_obat') }}"
+                        placeholder="Masukkan nama obat..."
+                        class="input input-bordered w-full rounded-lg text-sm @error('nama_obat') input-error @enderror"
+                        maxlength="255" required>
                     @error('nama_obat')
-                        <p class="mt-1.5 text-xs text-red-500"><i class="fas fa-circle-exclamation"></i> {{ $message }}</p>
+                    <label class="label pt-1"><span class="label-text-alt text-red-500">{{ $message }}</span></label>
                     @enderror
                 </div>
 
-                <div>
-                    <label for="kemasan" class="block text-sm font-semibold text-slate-700 mb-1.5">
-                        Kemasan
+                <div class="form-control mb-5">
+                    <label class="label pb-1">
+                        <span class="text-sm font-semibold text-gray-700">Kemasan <span class="text-red-500">*</span></span>
                     </label>
-                    <input type="text" name="kemasan" id="kemasan"
-                        value="{{ old('kemasan') }}"
-                        class="w-full px-4 py-2.5 rounded-lg border @error('kemasan') border-red-400 @else border-slate-300 @enderror focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all"
-                        placeholder="Contoh: Strip 10 tablet">
+                    <input type="text" name="kemasan" value="{{ old('kemasan') }}"
+                        placeholder="Contoh: tablet, botol, strip..."
+                        class="input input-bordered w-full rounded-lg text-sm @error('kemasan') input-error @enderror"
+                        maxlength="35" required>
                     @error('kemasan')
-                        <p class="mt-1.5 text-xs text-red-500"><i class="fas fa-circle-exclamation"></i> {{ $message }}</p>
+                    <label class="label pt-1"><span class="label-text-alt text-red-500">{{ $message }}</span></label>
                     @enderror
                 </div>
 
-                <div>
-                    <label for="harga" class="block text-sm font-semibold text-slate-700 mb-1.5">
-                        Harga (Rp) <span class="text-red-500">*</span>
+                <div class="form-control mb-6">
+                    <label class="label pb-1">
+                        <span class="text-sm font-semibold text-gray-700">Harga <span class="text-red-500">*</span></span>
                     </label>
-                    <input type="number" name="harga" id="harga" min="0"
-                        value="{{ old('harga') }}"
-                        class="w-full px-4 py-2.5 rounded-lg border @error('harga') border-red-400 @else border-slate-300 @enderror focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all"
-                        placeholder="Contoh: 5000">
+                    <input type="number" name="harga" value="{{ old('harga') }}" placeholder="Masukkan harga..."
+                        class="input input-bordered w-full rounded-lg text-sm @error('harga') input-error @enderror"
+                        min="0" step="1" required>
                     @error('harga')
-                        <p class="mt-1.5 text-xs text-red-500"><i class="fas fa-circle-exclamation"></i> {{ $message }}</p>
+                    <label class="label pt-1"><span class="label-text-alt text-red-500">{{ $message }}</span></label>
                     @enderror
                 </div>
 
-                <div class="flex items-center gap-3 pt-2">
+                <div class="flex gap-3">
                     <button type="submit"
-                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg shadow-sm transition-all">
+                        class="flex items-center gap-2 px-6 py-2.5 bg-[#2d4499] hover:bg-[#1e2d6b] text-white rounded-lg text-sm font-semibold transition">
                         <i class="fas fa-save"></i>
                         Simpan
                     </button>
-                    <a href="{{ route('admin.obat.index') }}"
-                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold rounded-lg transition-all">
+                    <a href="{{ route('obat.index') }}"
+                        class="flex items-center gap-2 px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-lg text-sm font-semibold transition">
                         Batal
                     </a>
                 </div>

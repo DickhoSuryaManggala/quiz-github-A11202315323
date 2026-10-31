@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('poli', function (Blueprint $table) {
-        $table->id();
-        $table->string('nama_poli', 25);
-        $table->text('keterangan')->nullable();
-        $table->timestamps();
-         });
+        Schema::create('obat', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_obat');
+            $table->string('kemasan', 35)->nullable();
+            $table->integer('harga');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('poli');
+        Schema::dropIfExists('obat');
     }
 };
