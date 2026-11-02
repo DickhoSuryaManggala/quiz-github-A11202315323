@@ -15,6 +15,13 @@ class Periksa extends Model
         'biaya_periksa'
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'tgl_periksa' => 'datetime',
+        ];
+    }
+
     public function daftarPoli()
     {
         return $this->belongsTo(DaftarPoli::class, 'id_daftar_poli');

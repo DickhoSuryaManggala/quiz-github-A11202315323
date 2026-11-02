@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(JadwalPeriksa::class, 'id_dokter');
     }
+
+    public function daftarPolis()
+    {
+        return $this->hasMany(DaftarPoli::class, 'id_pasien');
+    }
 }   
